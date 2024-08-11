@@ -1,56 +1,29 @@
 package com.example.demo.dto.request;
 
+import com.example.demo.validator.DobConstraint;
 import jakarta.validation.constraints.Size;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDate;
 
+//@Getter
+//@Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserCreationRequest {
     @Size(min = 3, message = "USERNAME_INVALID")
-    private String username;
+    String username;
 
-    @Size(min = 8, message = "PASSWORD_INVALI")
-    private String password;
-    private String firstname;
-    private String lastname;
-    private LocalDate dob;
+    @Size(min = 8, message = "PASSWORD_INVALID")
+    String password;
 
-    public String getUsername() {
-        return username;
-    }
+    String firstname;
+    String lastname;
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public LocalDate getDob() {
-        return dob;
-    }
-
-    public void setDob(LocalDate dob) {
-        this.dob = dob;
-    }
+    @DobConstraint(min = 18, message = "INVALID_DOB")
+    LocalDate dob;
 }

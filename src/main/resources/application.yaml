@@ -7,10 +7,16 @@ spring:
   application:
     name: demo
   datasource:
-    url: "jdbc:mysql://localhost:3306/gpone_db"
-    username: root
-    password: rootpassword
+    url: ${DBMS_CONNECTION:jdbc:mysql://localhost:3306/gpone_db}
+    driverClassName: "com.mysql.cj.jdbc.Driver"
+    username: ${DBMS_PASSWORD:root}
+    password: ${DBMS_USERNAME:rootpassword}
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+jwt:
+  signerKey: "Z0pRqZV/Ljn7X+6N905zG0Tbi9zIoLMcVHNRVqFpGdBXY5VI+Aodk8fSPUXNYsUo"
+  valid-duration: 3600 # in second
+  refreshable-duration: 36000 # in seconds
